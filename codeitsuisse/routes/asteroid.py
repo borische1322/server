@@ -42,7 +42,7 @@ def simplify_score():
             temp.append([current_char,1])
         if (text[i] == '0'):
             origin_position = current_index
-
+    print(temp)
     for i in range(3):
         if (origin_position -(i+1) <0 or origin_position +(i+1)>=len(temp)):
             break
@@ -53,7 +53,7 @@ def simplify_score():
     return score
 
 
-def find_origin():
+def find_origin(xdx):
     max_score = 0
     origin_position = 0
     for i in range(len(text)):
@@ -61,8 +61,9 @@ def find_origin():
         if (max_score < simplify_score()):
             max_score = simplify_score()
             origin_position = i
+        print(max_score)
         text.remove('0')
-    return {"input": text, "Score": max_score,"origin": origin_position}
+    return {"input": xdx, "Score": max_score,"origin": origin_position}
         
 @app.route('/asteroid', methods=['POST'])
 def evaluate_asteroid():
@@ -71,8 +72,7 @@ def evaluate_asteroid():
     #inputValue = data.get("input")
     result = []
     text = Convert(data)
-    result.append(find_origin())
-    print(result)
+    result.append(find_origin(data))
     logging.info("input :{}".format(data))
     logging.info("score :{}".format(result[0]["Score"]))
     logging.info("origin :{}".format(result[0]["origin"]))
