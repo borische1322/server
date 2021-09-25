@@ -27,6 +27,7 @@ def score_multiplicity(x):
     return x
 
 def simplify_score():
+    global text
     score = 0
     temp = [[text[0],1]]
     current_char = text[0]
@@ -55,6 +56,7 @@ def simplify_score():
 
 
 def find_origin(xdx):
+    global text
     print("hi2")
     max_score = 0
     origin_position = 0
@@ -72,6 +74,7 @@ def find_origin(xdx):
         
 @app.route('/asteroid', methods=['POST'])
 def evaluate_asteroid():
+    global text
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
