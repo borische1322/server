@@ -58,6 +58,7 @@ def find_origin(xdx):
     print("hi2")
     max_score = 0
     origin_position = 0
+    print(text)
     print(len(text))
     for i in range(len(text)):
         print("HIIIII")
@@ -78,6 +79,7 @@ def evaluate_asteroid():
     text = Convert(data)
     print("hi")
     print(len(text))
+    print(text)
     result.append(find_origin(data))
     print("hi1")
     logging.info("input :{}".format(data))
