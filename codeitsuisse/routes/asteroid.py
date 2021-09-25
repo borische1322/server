@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def Convert(string):
     list1=[]
     list1[:0]=string
-    len(list1)
+    print(len(list1))
     return list1
 
 
