@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 def Convert(string):
     list1=[]
     list1[:0]=string
-    print(len(list1))
     return list1
 
 
@@ -57,18 +56,13 @@ def simplify_score():
 
 def find_origin(xdx):
     global text
-    print("hi2")
     max_score = 0
     origin_position = 0
-    print(text)
-    print(len(text))
     for i in range(len(text)):
-        print("HIIIII")
         text.insert(i, '0')
         if (max_score < simplify_score()):
             max_score = simplify_score()
             origin_position = i
-        logging.info("input :{}".format(max_score))
         text.remove('0')
     return {"input": xdx, "score": max_score,"origin": origin_position}
         
@@ -86,7 +80,6 @@ def evaluate_asteroid():
     for test_cases in data:
         text = Convert(test_cases)
         result.append(find_origin(test_cases))
-        print("hi1")
         logging.info("input :{}".format(test_cases))
         #logging.info("score :{}".format(result[0]["Score"]))
         #logging.info("origin :{}".format(result[0]["origin"]))
