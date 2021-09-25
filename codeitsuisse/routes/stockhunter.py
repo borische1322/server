@@ -30,8 +30,8 @@ def subtotal(xcor, ycor,x ,y):
 
 
 def get_cost(input):
-    x = input["targetPoint"][0] + 1
-    y = input["targetPoint"][1] + 1
+    x = input["targetPoint"]["first"] + 1
+    y = input["targetPoint"]["second"] + 1
     gridmap = [[0 for i in range(x)] for j in range(y)]
     gridmapindex = [[0 for i in range(x)] for j in range(y)]
     gridDepth = input["gridDepth"]
