@@ -45,9 +45,11 @@ def simplify_score(xdx):
             current_index = current_index + 1
             temp.append([current_char,1])
 
+    print(temp)
     for i in range(len(temp)):
         if (temp[i][1] == 2):
             temp_position += temp[i][1]
+            max_score += 1
             continue
         temp_score += score_multiplicity(temp[i][1])
 
