@@ -54,6 +54,7 @@ def simplify_score():
 
 
 def find_origin(xdx):
+    print("hi2")
     max_score = 0
     origin_position = 0
     for i in range(len(text)):
@@ -72,7 +73,9 @@ def evaluate_asteroid():
     #inputValue = data.get("input")
     result = []
     text = Convert(data)
+    print("hi")
     result.append(find_origin(data))
+    print("hi1")
     logging.info("input :{}".format(data))
     logging.info("score :{}".format(result[0]["Score"]))
     logging.info("origin :{}".format(result[0]["origin"]))
