@@ -43,7 +43,7 @@ def simplify_score():
             temp.append([current_char,1])
         if (text[i] == '0'):
             origin_position = current_index
-    for i in range(3):
+    for i in range(origin_position):
         if (origin_position -(i+1) <0 or origin_position +(i+1)>=len(temp)):
             break
         if (temp[origin_position -(i+1)][0] == temp[origin_position +(i+1)][0]):
