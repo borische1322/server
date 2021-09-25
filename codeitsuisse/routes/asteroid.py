@@ -57,6 +57,7 @@ def find_origin(xdx):
     print("hi2")
     max_score = 0
     origin_position = 0
+    print(len(text))
     for i in range(len(text)):
         print("HIIIII")
         text.insert(i, '0')
