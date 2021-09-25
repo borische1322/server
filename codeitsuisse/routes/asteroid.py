@@ -25,13 +25,15 @@ def score_multiplicity(x):
         return int(x * 1.5)
     return x
 
-def simplify_score():
+def simplify_score(xdx):
     global text
+    max_score = 0
     score = 0
     temp = [[text[0],1]]
     current_char = text[0]
     current_index = 0
     origin_position = 0
+    max_origin = 0
     for i in range(len(text)):
         if (i == 0):
             continue
@@ -41,31 +43,27 @@ def simplify_score():
             current_char = text[i]
             current_index = current_index + 1
             temp.append([current_char,1])
-        if (text[i] == '0'):
-            origin_position = current_index
-    for i in range(origin_position):
-        if (origin_position -(i+1) <0 or origin_position +(i+1)>=len(temp)):
-            break
-        if (temp[origin_position -(i+1)][0] == temp[origin_position +(i+1)][0]):
-            score += score_multiplicity(temp[origin_position -(i+1)][1] + temp[origin_position +(i+1)][1])
-        else:
-            break
-    return score
-
-
-def find_origin(xdx):
-    global text
-    max_score = 0
-    origin_position = 0
-    replaced_element = '0'
-    for i in range(len(text)):
-        replaced_element = text[i]
-        text[i] = '0'
-        if (max_score < simplify_score()):
-            max_score = simplify_score()
-            origin_position = i
-        text[i] = replaced_element
-    return {"input": xdx, "score": max_score,"origin": origin_position}
+    print(temp)
+    for i in range(len(temp)):
+        print(origin_position)
+        print(max_origin)
+        if (temp[i][1] < 3):
+            origin_position += temp[i][1]
+            continue
+        score += temp[i][1]
+        
+        for j in range(i):
+            if (i-(j+1) <0 or i+(j+1) >= len(temp)):
+                break
+            if (temp[i-(j+1)][0] == temp[i+(j+1)][0]):
+                score += score_multiplicity(temp[i-(j+1)][1] + temp[i+(j+1)][1])
+        if (score > max_score):
+            max_score = score
+            max_origin = origin_position
+            max_origin += 1
+        score = 0
+        origin_position += temp[i][1]
+    return {"input": xdx, "score": max_score,"origin": max_origin}
         
 @app.route('/asteroid', methods=['POST'])
 def evaluate_asteroid():
@@ -78,7 +76,7 @@ def evaluate_asteroid():
     
     for test_cases in data['test_cases']:
         text = Convert(str(test_cases))
-        result.append(find_origin(test_cases))
+        result.append(simplify_score(test_cases))
         ##logging.info("input :{}".format(test_cases))
         #logging.info("score :{}".format(result[0]["Score"]))
         #logging.info("origin :{}".format(result[0]["origin"]))
