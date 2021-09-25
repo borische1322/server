@@ -42,7 +42,7 @@ def simplify_score():
             temp.append([current_char,1])
         if (text[i] == '0'):
             origin_position = current_index
-    print(temp)
+    logging.info("input :{}".format(temp))
     for i in range(3):
         if (origin_position -(i+1) <0 or origin_position +(i+1)>=len(temp)):
             break
@@ -61,7 +61,7 @@ def find_origin(xdx):
         if (max_score < simplify_score()):
             max_score = simplify_score()
             origin_position = i
-        print(max_score)
+        logging.info("input :{}".format(max_score))
         text.remove('0')
     return {"input": xdx, "Score": max_score,"origin": origin_position}
         
