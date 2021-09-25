@@ -17,7 +17,6 @@ def Convert(string):
     list1[:0]=string
     return list1
 
-text = Convert(inputValue)
 
 def score_multiplicity(x):
     if (x >= 10):
