@@ -73,7 +73,7 @@ def evaluate_asteroid():
     for test_case in data:
         text = Convert(test_case)
         result.append(find_origin())
-    
+    print(result)
     logging.info("input :{}".format(text))
     logging.info("score :{}".format(result[0]["Score"]))
     logging.info("origin :{}".format(result[0]["origin"]))
