@@ -75,8 +75,8 @@ def evaluate_asteroid():
         result.append(find_origin())
     
     logging.info("input :{}".format(text))
-    logging.info("score :{}".format(result("Score")))
-    logging.info("origin :{}".format(result("origin")))
+    logging.info("score :{}".format(result[0]("Score")))
+    logging.info("origin :{}".format(result[0]("origin")))
     return json.dumps(result)
 
 
