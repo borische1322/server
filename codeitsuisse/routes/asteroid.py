@@ -80,7 +80,7 @@ def evaluate_asteroid():
     for test_cases in data['test_cases']:
         text = Convert(str(test_cases))
         result.append(simplify_score(test_cases))
-        ##logging.info("input :{}".format(test_cases))
+        logging.info("input :{}".format(test_cases))
         logging.info("score :{}".format(result[l]["score"]))
         logging.info("origin :{}".format(result[l]["origin"]))
         l += 1
