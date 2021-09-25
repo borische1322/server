@@ -71,7 +71,7 @@ def simplify_score(xdx):
 
     return {"input": xdx, "score": max_score,"origin": max_position}
         
-@app.route('/stonks', methods=['POST'])
+@app.route('/asteroid', methods=['POST'])
 def evaluate_asteroid():
     global text
     data = request.get_json()
