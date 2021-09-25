@@ -30,14 +30,14 @@ def subtotal(xcor, ycor,x ,y):
 
 
 def get_cost(input):
-    x = input[0]["targetPoint"][0] + 1
-    y = input[0]["targetPoint"][1] + 1
+    x = input["targetPoint"][0] + 1
+    y = input["targetPoint"][1] + 1
     gridmap = [[0 for i in range(x)] for j in range(y)]
     gridmapindex = [[0 for i in range(x)] for j in range(y)]
-    gridDepth = input[0]["gridDepth"]
-    gridKey = input[0]["gridKey"]
-    hstepper = input[0]["horizontalStepper"]
-    vstepper = input[0]["verticalStepper"]
+    gridDepth = input["gridDepth"]
+    gridKey = input["gridKey"]
+    hstepper = input["horizontalStepper"]
+    vstepper = input["verticalStepper"]
 
 
         
