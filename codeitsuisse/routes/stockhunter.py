@@ -116,7 +116,7 @@ def evaluate_stock_hunter():
     l = 0
     for test_cases in data:
         result.append(get_cost(test_cases))
-        logging.info("score :{}".format(result[l]["gridMap"]))
-        logging.info("origin :{}".format(result[l]["minimumCost"]))
+        logging.info("gridMap :{}".format(result[l]["gridMap"]))
+        logging.info("minimumCost :{}".format(result[l]["minimumCost"]))
         l += 1
     return json.dumps(result)
