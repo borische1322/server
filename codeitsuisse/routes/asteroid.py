@@ -28,12 +28,13 @@ def score_multiplicity(x):
 def simplify_score(xdx):
     global text
     max_score = 0
-    score = 0
+    temp_score = 0
+    temp_position = 0
+    max_position = 0
     temp = [[text[0],1]]
     current_char = text[0]
     current_index = 0
-    origin_position = 0
-    max_origin = 0
+    
     for i in range(len(text)):
         if (i == 0):
             continue
@@ -43,32 +44,28 @@ def simplify_score(xdx):
             current_char = text[i]
             current_index = current_index + 1
             temp.append([current_char,1])
-            
-    print(temp)
+
     for i in range(len(temp)):
-
         if (temp[i][1] < 3):
-            origin_position += temp[i][1]
+            temp_position += temp[i][1]
             continue
-        score += score_multiplicity(temp[i][1])
-        
-        for j in range(i):
-            
-            if (i-(j+1) <0 or i+(j+1) >= len(temp)):
-                break
-            
-            if (temp[i-(j+1)][0] == temp[i+(j+1)][0]):
-                score += score_multiplicity(temp[i-(j+1)][1] + temp[i+(j+1)][1])
-            else:
-                break
+        temp_score += score_multiplicity(temp[i][1])
 
-        if (score > max_score):
-            max_score = score
-            max_origin = origin_position
-            max_origin += 1
-        score = 0
-        origin_position += temp[i][1]
-    return {"input": xdx, "score": max_score,"origin": max_origin}
+        j = 1
+        while( (i-j) >= 0 and (i+j) < len(temp)):
+            if (temp[i-j][0] != temp[i+j][0]):
+                break
+            else:
+                temp_score += score_multiplicity(temp[i-j][1] + temp[i+j][1])
+            j += 1
+            
+        if (temp_score > max_score):
+            max_score = temp_score
+            max_position = temp_position + 1
+        temp_score = 0
+        temp_position += temp[i][1]
+
+    return {"input": xdx, "score": max_score,"origin": max_position}
         
 @app.route('/asteroid', methods=['POST'])
 def evaluate_asteroid():
