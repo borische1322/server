@@ -13,15 +13,12 @@ logger = logging.getLogger(__name__)
 
 
 def Convert(string):
-    print("1")
     list1=[]
     list1[:0]=string
-    print("2")
     return list1
 
 
 def score_multiplicity(x):
-    print("3")
     if (x >= 10):
         return x*2
     if (x >= 7):
@@ -29,7 +26,6 @@ def score_multiplicity(x):
     return x
 
 def simplify_score():
-    print("4")
     global text
     score = 0
     temp = [[text[0],1]]
@@ -47,7 +43,6 @@ def simplify_score():
             temp.append([current_char,1])
         if (text[i] == '0'):
             origin_position = current_index
-    print("5")
     for i in range(3):
         if (origin_position -(i+1) <0 or origin_position +(i+1)>=len(temp)):
             break
@@ -55,12 +50,10 @@ def simplify_score():
             score += score_multiplicity(temp[origin_position -(i+1)][1] + temp[origin_position +(i+1)][1])
         else:
             break
-    print("6")
     return score
 
 
 def find_origin(xdx):
-    print("7")
     global text
     max_score = 0
     origin_position = 0
@@ -70,7 +63,6 @@ def find_origin(xdx):
             max_score = simplify_score()
             origin_position = i
         text.remove('0')
-    print("8")
     return {"input": xdx, "score": max_score,"origin": origin_position}
         
 @app.route('/asteroid', methods=['POST'])
