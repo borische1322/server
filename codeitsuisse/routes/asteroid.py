@@ -1,82 +1,84 @@
-import json
 import logging
+import json
+
 from flask import request, jsonify
+
 from codeitsuisse import app
 
+text = ""
 logger = logging.getLogger(__name__)
+
+
+
+
+
+def Convert(string):
+    list1=[]
+    list1[:0]=string
+    return list1
+
+text = Convert(inputValue)
+
+def score_multiplicity(x):
+    if (x >= 10):
+        return x*2
+    if (x >= 7):
+        return int(x * 1.5)
+    return x
+
+def simplify_score():
+    score = 0
+    temp = [[text[0],1]]
+    current_char = text[0]
+    current_index = 0
+    origin_position = 0
+    for i in range(len(text)):
+        if (i == 0):
+            continue
+        if (text[i] == current_char):
+            temp[current_index][1] = temp[current_index][1] + 1
+        else:
+            current_char = text[i]
+            current_index = current_index + 1
+            temp.append([current_char,1])
+        if (text[i] == '0'):
+            origin_position = current_index
+
+    for i in range(3):
+        if (origin_position -(i+1) <0 or origin_position +(i+1)>=len(temp)):
+            break
+        if (temp[origin_position -(i+1)][0] == temp[origin_position +(i+1)][0]):
+            score += score_multiplicity(temp[origin_position -(i+1)][1] + temp[origin_position +(i+1)][1])
+        else:
+            break
+    return score
+
+
+def find_origin():
+    max_score = 0
+    origin_position = 0
+    for i in range(len(text)):
+        text.insert(i, '0')
+        if (max_score < simplify_score()):
+            max_score = simplify_score()
+            origin_position = i
+        text.remove('0')
+    return {"input": text, "Score": max_score,"origin": origin_position}
+        
 @app.route('/asteroid', methods=['POST'])
-def evaluate_Asteriod():
-    global sentence
-    global mark
-    global origin_position
-    global inputValue
+def evaluate_asteroid():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    inputValue = data.get("input")
-    logging.info("input :{}".format(sentence))
-    logging.info("score :{}".format(mark))
+    #inputValue = data.get("input")
+    result = []
+    for test_case in data:
+        text = Convert(test_case)
+        result.append(find_origin(test_case))
+    
+    logging.info("input :{}".format(inputValue))
+    logging.info("score :{}".format(max_score))
     logging.info("origin :{}".format(origin_position))
     return json.dumps(result)
 
-mark=0
-#split the sentence
-def split_by_unique_groups(list_):
-    to_return = []
 
-    idx = 0
-    while idx != len(list_):
-        curr = list_[idx]
-
-        next_bad_idx = None
-        for x in range(idx+1, len(list_)):
-            if list_[x] != curr:
-                next_bad_idx = x
-                break
-
-        sub_str = list_[idx:next_bad_idx] # [x:None] returns x to len(s)
-        to_return.append(sub_str)
-
-        if next_bad_idx is None:
-            break
-        idx = next_bad_idx
-    return to_return
-sentence_split = split_by_unique_groups(inputValue)
-
-
-#test
-while len(sentence_split)>1:
-    origin=int(len(sentence_split)/2)
-    global index
-    index=len(sentence_split[origin])
-    if sentence_split[origin-1][0]==sentence_split[origin+1][0]:
-        if (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=10:
-            mark+=2*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-            
-        elif (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=7:
-            mark+=1.5*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-
-        else:
-            mark+=(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-
-        sentence_split.pop(origin-1)
-        sentence_split.pop(origin)
-        
-    else:
-        break
-if index>=10:
-    mark+=2*index
-elif index>=7:
-    mark+=1.5*index
-else:
-    mark+=index
-
-sentence_copy=split_by_unique_groups(inputValue)
-
-origin_position=int(len(sentence_copy)/2)
-numberOfOrigin=0
-i=0
-while i < origin_position:
-    numberOfOrigin+=len(sentence_copy[i])
-    i+=1
-numberOfOrigin+=int(len(sentence_copy)/2)-1
 
