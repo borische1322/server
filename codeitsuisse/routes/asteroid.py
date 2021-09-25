@@ -83,11 +83,12 @@ def evaluate_asteroid():
     print("hi")
     print(len(text))
     print(text)
-    result.append(find_origin(data))
-    print("hi1")
-    logging.info("input :{}".format(data))
-    logging.info("score :{}".format(result[0]["Score"]))
-    logging.info("origin :{}".format(result[0]["origin"]))
+    for test_cases in data:
+        result.append(find_origin(test_cases))
+        print("hi1")
+        logging.info("input :{}".format(test_cases))
+        #logging.info("score :{}".format(result[0]["Score"]))
+        #logging.info("origin :{}".format(result[0]["origin"]))
     return json.dumps(result)
 
 
