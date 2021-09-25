@@ -75,7 +75,7 @@ def evaluate_asteroid():
     
     print("hi")
     
-    for test_cases in data:
+    for test_cases in data['test_cases']:
         text = Convert(test_cases)
         print(len(text))
         print(text)
