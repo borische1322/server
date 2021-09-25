@@ -83,8 +83,6 @@ def get_cost(input):
             continue
         right = subtotal(movement[0] + 1, movement[1],x ,y,gridmap)
         down = subtotal(movement[0], movement[1] + 1,x ,y,gridmap)
-        print(right)
-        print(down)
         if (right < down):
             movement[0] += 1
             gridmap[movement[1]][movement[0]] = "\033[1m" + gridmap[movement[1]][movement[0]] + "\033[0m"
@@ -103,7 +101,7 @@ def get_cost(input):
                 min_cost += 2
             else:
                 min_cost += 3
-
+        print(min_cost)
     return {"gridMap": gridmap, "minimumCost": min_cost}
 
 @app.route('/stock-hunter', methods=['POST'])
