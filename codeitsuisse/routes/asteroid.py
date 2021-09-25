@@ -76,7 +76,7 @@ def evaluate_asteroid():
         ##logging.info("input :{}".format(test_cases))
         logging.info("score :{}".format(result[l]["score"]))
         logging.info("origin :{}".format(result[l]["origin"]))
-        j += 1
+        l += 1
     return json.dumps(result)
 
 
