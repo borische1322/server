@@ -44,8 +44,6 @@ def simplify_score(xdx):
             current_index = current_index + 1
             temp.append([current_char,1])
     for i in range(len(temp)):
-        print(origin_position)
-        print(max_origin)
         if (temp[i][1] < 3):
             origin_position += temp[i][1]
             continue
@@ -71,13 +69,14 @@ def evaluate_asteroid():
     #inputValue = data.get("input")
     result = []
     
-    
+    l = 0
     for test_cases in data['test_cases']:
         text = Convert(str(test_cases))
         result.append(simplify_score(test_cases))
         ##logging.info("input :{}".format(test_cases))
-        #logging.info("score :{}".format(result[0]["Score"]))
-        #logging.info("origin :{}".format(result[0]["origin"]))
+        logging.info("score :{}".format(result[l]["score"]))
+        logging.info("origin :{}".format(result[l]["origin"]))
+        j += 1
     return json.dumps(result)
 
 
