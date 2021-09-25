@@ -13,7 +13,7 @@ def riskCat(x):
         return "M"
     return "S"
 
-def subtotal(xcor, ycor,x ,y):
+def subtotal(xcor, ycor,x ,y, gridmap):
     subtotal_cost = 0
     num_move = 0
     for i in range(xcor, x):
@@ -81,8 +81,8 @@ def get_cost(input):
             else:
                 min_cost += 3
             continue
-        right = subtotal(movement[0] + 1, movement[1],x ,y)
-        down = subtotal(movement[0], movement[1] + 1,x ,y)
+        right = subtotal(movement[0] + 1, movement[1],x ,y,gridmap)
+        down = subtotal(movement[0], movement[1] + 1,x ,y,gridmap)
         print(right)
         print(down)
         if (right < down):
