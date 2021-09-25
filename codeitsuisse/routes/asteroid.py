@@ -77,7 +77,8 @@ def evaluate_asteroid():
     result = []
     text = Convert(data)
     print("hi")
-    result.append(find_origin(text))
+    print(len(text))
+    result.append(find_origin(data))
     print("hi1")
     logging.info("input :{}".format(data))
     logging.info("score :{}".format(result[0]["Score"]))
