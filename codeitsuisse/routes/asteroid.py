@@ -44,15 +44,18 @@ def simplify_score(xdx):
             current_index = current_index + 1
             temp.append([current_char,1])
     for i in range(len(temp)):
+
         if (temp[i][1] < 3):
             origin_position += temp[i][1]
             continue
-        score += temp[i][1]
+        score += score_multiplicity(temp[i][1])
+        
         for j in range(i):
             if (i-(j+1) <0 or i+(j+1) >= len(temp)):
                 break
             if (temp[i-(j+1)][0] == temp[i+(j+1)][0]):
                 score += score_multiplicity(temp[i-(j+1)][1] + temp[i+(j+1)][1])
+
         if (score > max_score):
             max_score = score
             max_origin = origin_position
