@@ -57,12 +57,14 @@ def find_origin(xdx):
     global text
     max_score = 0
     origin_position = 0
+    replaced_element = '0'
     for i in range(len(text)):
-        text.insert(i, '0')
+        replaced_element = text[i]
+        text[i] = '0'
         if (max_score < simplify_score()):
             max_score = simplify_score()
             origin_position = i
-        text.remove('0')
+        text[i] = replaced_element
     return {"input": xdx, "score": max_score,"origin": origin_position}
         
 @app.route('/asteroid', methods=['POST'])
