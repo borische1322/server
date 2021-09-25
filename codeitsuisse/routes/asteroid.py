@@ -51,10 +51,14 @@ def simplify_score(xdx):
         score += score_multiplicity(temp[i][1])
         
         for j in range(i):
+            
             if (i-(j+1) <0 or i+(j+1) >= len(temp)):
                 break
+            
             if (temp[i-(j+1)][0] == temp[i+(j+1)][0]):
                 score += score_multiplicity(temp[i-(j+1)][1] + temp[i+(j+1)][1])
+            else:
+                break
 
         if (score > max_score):
             max_score = score
