@@ -79,11 +79,12 @@ def evaluate_asteroid():
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
     result = []
-    text = Convert(data)
+    
     print("hi")
     print(len(text))
     print(text)
     for test_cases in data:
+        text = Convert(test_cases)
         result.append(find_origin(test_cases))
         print("hi1")
         logging.info("input :{}".format(test_cases))
