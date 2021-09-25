@@ -43,7 +43,6 @@ def simplify_score(xdx):
             current_char = text[i]
             current_index = current_index + 1
             temp.append([current_char,1])
-    print(temp)
     for i in range(len(temp)):
         print(origin_position)
         print(max_origin)
@@ -51,7 +50,6 @@ def simplify_score(xdx):
             origin_position += temp[i][1]
             continue
         score += temp[i][1]
-        
         for j in range(i):
             if (i-(j+1) <0 or i+(j+1) >= len(temp)):
                 break
