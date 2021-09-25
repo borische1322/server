@@ -70,7 +70,7 @@ def find_origin(xdx):
             origin_position = i
         logging.info("input :{}".format(max_score))
         text.remove('0')
-    return {"input": xdx, "Score": max_score,"origin": origin_position}
+    return {"input": xdx, "score": max_score,"origin": origin_position}
         
 @app.route('/asteroid', methods=['POST'])
 def evaluate_asteroid():
