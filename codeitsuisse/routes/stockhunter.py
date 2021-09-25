@@ -27,20 +27,7 @@ def subtotal(xcor, ycor,x ,y):
             num_move += 1
     return float(float(subtotal_cost)/float(num_move))
 
-@app.route('/stock-hunter', methods=['POST'])
-def evaluate_stock_hunter():
-    data = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
-    #inputValue = data.get("input")
-    result = []
-    
-    l = 0
-    for test_cases in data['test_cases']:
-        result.append(get_cost(test_cases))
-        logging.info("score :{}".format(result[l]["gridMap"]))
-        logging.info("origin :{}".format(result[l]["minimumCost"]))
-        l += 1
-    return json.dumps(result)
+
 
 def get_cost(input):
     x = input[0]["targetPoint"][0] + 1
@@ -117,6 +104,19 @@ def get_cost(input):
             else:
                 min_cost += 3
 
-    print(min_cost)
-    print(gridmap)
     return {"gridMap": gridmap, "minimumCost": min_cost}
+
+@app.route('/stock-hunter', methods=['POST'])
+def evaluate_stock_hunter():
+    data = request.get_json()
+    logging.info("data sent for evaluation {}".format(data))
+    #inputValue = data.get("input")
+    result = []
+    
+    l = 0
+    for test_cases in data['test_cases']:
+        result.append(get_cost(test_cases))
+        logging.info("score :{}".format(result[l]["gridMap"]))
+        logging.info("origin :{}".format(result[l]["minimumCost"]))
+        l += 1
+    return json.dumps(result)
