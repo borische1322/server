@@ -26,7 +26,7 @@ def score_multiplicity(x):
     return x
 
 def simplify_score(xdx):
-        global text
+    global text
     max_score = 0
     temp_score = 0
     temp_position = 0
@@ -47,6 +47,7 @@ def simplify_score(xdx):
 
     for i in range(len(temp)):
         if (temp[i][1] == 2):
+            temp_position += temp[i][1]
             continue
         temp_score += score_multiplicity(temp[i][1])
 
@@ -60,9 +61,7 @@ def simplify_score(xdx):
             
         if (temp_score > max_score):
             max_score = temp_score
-            max_position = 0
-            for k in range(i):
-                max_position +=temp[k][1]
+            max_position = temp_position
             if (temp[i][1] != 1):
                 max_position += 1
         temp_score = 0
