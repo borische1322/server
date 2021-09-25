@@ -58,7 +58,7 @@ def find_origin(xdx):
     max_score = 0
     origin_position = 0
     for i in range(len(text)):
-        print(i)
+        print("HIIIII")
         text.insert(i, '0')
         if (max_score < simplify_score()):
             max_score = simplify_score()
